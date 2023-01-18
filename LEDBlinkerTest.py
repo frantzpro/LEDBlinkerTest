@@ -7,11 +7,10 @@ from AbstractVirtualCapability import AbstractVirtualCapability, VirtualCapabili
 
 
 class LEDBlinkerTest(AbstractVirtualCapability):
-
     blinkModes = {0: "Off",
-                 1: "On",
-                 2: "MediumBlink",
-                 3: "SOS"}
+                  1: "On",
+                  2: "MediumBlink",
+                  3: "SOS"}
 
     def __init__(self, server):
         super().__init__(server)
@@ -33,7 +32,7 @@ class LEDBlinkerTest(AbstractVirtualCapability):
     def StartMode(self, param: dict) -> dict:
         self.endMode = False
 
-        #Just for testing the meduimBlink mode
+        # Just for testing the mediumBlink mode
         self.blinkMode = 2
 
     def RunMode(self, param: dict) -> dict:
@@ -41,10 +40,11 @@ class LEDBlinkerTest(AbstractVirtualCapability):
             '''Implement the different modes'''
             if self.blinkModes[self.blinkMode] == "MediumBlink":
                 sleep(500)
+                print("HI")
                 self.invoke_sync("turnOnLED", {})
+                print("HO")
                 sleep(500)
                 self.invoke_sync("turnOffLED", {})
-
 
     def SetLED(self, param: dict) -> dict:
         self.ledOn = param["SimpleBooleanParameter"]
