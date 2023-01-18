@@ -39,12 +39,13 @@ class LEDBlinkerTest(AbstractVirtualCapability):
         while not self.endMode:
             '''Implement the different modes'''
             if self.blinkModes[self.blinkMode] == "MediumBlink":
-                sleep(1)
-                print("HI")
-                self.invoke_async("turnOnLED", {}, lambda x: x)
-                print("HO")
-                sleep(1)
-                self.invoke_async("turnOffLED", {}, lambda x: x)
+                self.MediumBlink()
+
+    def MediumBlink(self):
+        sleep(1)
+        self.invoke_async("turnOnLED", {})
+        sleep(1)
+        self.invoke_async("turnOffLED", {})
 
     def SetLED(self, param: dict) -> dict:
         self.ledOn = param["SimpleBooleanParameter"]
