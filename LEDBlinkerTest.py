@@ -35,11 +35,11 @@ class LEDBlinkerTest(AbstractVirtualCapability):
         while not self.endMode:
             '''Implement the different modes'''
             if self.blinkModes[self.blinkMode] == "MediumBlink":
-                self.MediumBlink(0.5)
+                self.Blink(0.5)
             elif self.blinkModes[self.blinkMode] == "FastBlink":
                 self.Blink(0.1)
             elif self.blinkModes[self.blinkMode] == "SlowBlink":
-                self.Blink(1.5)
+                self.Blink(1)
             elif self.blinkModes[self.blinkMode] == "On":
                 self.invoke_sync("turnOnLED", {})
             elif self.blinkModes[self.blinkMode] == "Off":
@@ -48,7 +48,7 @@ class LEDBlinkerTest(AbstractVirtualCapability):
                 self.SOS()
 
 
-    def SOS(self, waitingTime: float):
+    def SOS(self):
         self.invoke_sync("turnOffLED", {})
         sleep(0.5)
         for i in range(9):
