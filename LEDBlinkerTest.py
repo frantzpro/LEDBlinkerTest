@@ -10,7 +10,9 @@ class LEDBlinkerTest(AbstractVirtualCapability):
     blinkModes = {0: "Off",
                   1: "On",
                   2: "MediumBlink",
-                  3: "SOS"}
+                  3: "SOS",
+                  4: "SlowBlink",
+                  5: "FastBlink"}
 
     def __init__(self, server):
         super().__init__(server)
@@ -19,21 +21,15 @@ class LEDBlinkerTest(AbstractVirtualCapability):
         self.endMode = True
         self.blinkMode = 0
 
-    '''def GetBlinkMode(self, params: dict) -> dict:
-        return {"BlinkMode:": self.blinkMode}
-
-    def SetBlinkMode(self, params: dict) -> dict:
-        self.blinkMode = params["BlinkMode"]
-        return {"BlinkMode:": self.blinkMode}'''
+    def SwitchMode(self, param: dict) -> dict:
+        self.blinkMode = param["SimpleIntParameter"]
+        # Check if param is to high or negative
 
     def EndMode(self, param: dict) -> dict:
         self.endMode = True
 
     def StartMode(self, param: dict) -> dict:
         self.endMode = False
-
-        # Just for testing the mediumBlink mode
-        self.blinkMode = 2
 
     def RunMode(self, param: dict) -> dict:
         while not self.endMode:
