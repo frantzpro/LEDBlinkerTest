@@ -27,7 +27,7 @@ class LEDBlinkerTest(AbstractVirtualCapability):
         return {"BlinkMode:": self.blinkMode}'''
 
     def SetLED(self, param: dict) -> dict:
-        self.ledOn = param["ledOn"]
+        self.ledOn = param["SimpleBooleanParameter"]
         if self.ledOn:
             self.invoke_sync("turnOnLED", {})
         else:
